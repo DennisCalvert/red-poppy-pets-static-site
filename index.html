@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" type="image/png"
+        href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+    <link rel="shortcut icon" type="image/x-icon"
+        href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+    <link rel="mask-icon" type=""
+        href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg"
+        color="#111" />
+    <title>Red Poppy Pets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: #43B2E2;
+            text-decoration: none;
+        }
+
+        #heading {
+            background-color: #111;
+            line-height: 1em;
+            width: 100%;
+            border-bottom: 4px solid #43B2E2;
+            color: #fff;
+            position: fixed;
+            text-align: left;
+            top: 0;
+        }
+
+        #heading a {
+            display: block;
+            padding: 30px;
+            transition: background-color 0.2s ease;
+        }
+
+        #heading a:hover {
+            background-color: #43B2E2;
+            color: #FFFFFF;
+        }
+
+        #heading #logo {
+            display: block;
+            padding: 3px;
+        }
+
+        #heading #logo img {
+            max-width: 110px;
+        }
+
+        #hero {
+            height: 100vh;
+            width: 100%;
+            background-image: url(http://redpoppypets.s3-website-us-east-1.amazonaws.com/images/puppy.jpg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 25px;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        @media screen and (min-width: 1200px) {
+            .content {
+                padding: 70px 30px 100px;
+            }
+        }
+
+        .content img {
+            width: 100%;
+        }
+
+        #footer {
+            background-color: #111;
+            line-height: 1em;
+            width: 100%;
+            clear: both;
+            color: #666;
+            padding: 20px;
+            text-align: right;
+        }
+
+        @media screen and (min-width: 1200px) {
+            #footer {
+                bottom: 0;
+                position: fixed;
+            }
+        }
+
+        .isVisible {
+            -webkit-transform: translateX(0) !important;
+            transform: translateX(0) !important;
+        }
+
+        /*--------------------------
+Page Content Nav Buider Styles
+--------------------------*/
+        #page-nav {
+            text-align: right;
+            background-color: transparent;
+            position: fixed;
+            text-align: right;
+            top: 6px;
+            right: 0;
+        }
+
+        #page-nav a {
+            display: inline-block;
+            padding: 10px;
+            transition: background-color 0.2s ease;
+        }
+
+        #page-nav a:hover {
+            background-color: #0F77A9;
+            color: #FFFFFF;
+        }
+
+        #page-nav a.active {
+            background-color: #46B7EE;
+            color: #FFFFFF;
+        }
+
+/* Contact */
+
+        input,
+        textarea,
+        button {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 10px;
+        }
+        input[type=submit]{
+            background: green;
+            color: #fff;
+            border-radius: 3px;
+            border: 0;
+        }
+/* puppies */
+        #item-tiles {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-around;
+            align-content: flex-start;
+        }
+
+        #item-tiles .tile {
+            flex-grow: 1;
+            max-width: 300px;
+            width: 100%;
+            border-radius: 3px;
+            box-shadow: 1px 1px 2px #ccc;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+
+        }
+
+        #item-tiles .tile-image {
+            width: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            min-height: 200px;
+        }
+
+        #item-tiles .tile-content {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body translate="no">
+    <div id="heading">
+        <span id="logo"><img src="https://redpoppypets.s3.amazonaws.com/2020/rpp-logo.png" /></span>
+        <div id="page-nav">
+            <a href="#section-puppies" id="nav-puppies">Puppies</a>
+            <a href="#section-resources" id="nav-resources">Resources</a>
+            <a href="#section-contact" id="nav-contact">Contact</a>
+        </div>
+    </div>
+    <div id="hero">
+    </div>
+    <hr />
+    <div class="content">
+        <div id="section-contact">
+            <p>Owner: Lisa Calvert</p>
+            <p>Phone: 256-747-1086 / 256-595-4630</p>
+            <p>Email: lisa@redpoppypets.com</p>
+            <form action="https://mailthis.to/lisa@redpoppypets.com" method="POST" encType="multipart/form-data">
+                <input required type="text" name="name" placeholder="Your name">
+                <input required type="email" name="_replyto" placeholder="Your email">
+                <textarea name="message" placeholder="Enter your message here"></textarea>
+                <input type="hidden" name="_subject" value="Red Poppy Pets">
+                <input type="hidden" name="_after" value="http://redpoppypets.com/">
+                <input type="hidden" name="_honeypot" value="">
+                <input type="hidden" name="_confirmation" value="">
+                <input type="submit" value="Send">
+            </form>
+        </div>
+    </div>
+<hr />
+    <div id="section-puppies">
+        <iframe style="display: block; margin:0 auto;" width="560" height="315" src="https://www.youtube.com/embed/t0LUC7pgS5s?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+        <div class="content">
+        <p>Puppies can be held with a 100.00 nonrefundable good faith deposit. You can pay balance when you pick up your puppy OR make payments before pick up.</p>
+        </div>
+    </div>
+        <div id="item-tiles"></div>
+    </div>
+<hr />
+    <div id="section-resources" class="content">
+        <p>
+            <a title="Puppy Purchase Guarantee" href="https://web.archive.org/web/20150405003333/http://www.redpoppypets.com/?page_id=202" target="_blank">Puppy Purchase Guarantee</a>
+        </p>
+        <p>
+            <strong>FAQ</strong>
+        </p>
+        <p>
+            <strong>Have you started house breaking the puppy?</strong>
+            <br>
+            <span style="color: #808080;">Our pups a litter box trained. This consists of a plastic pan filled with cedar shavings.
+                Upon request, we can begin puppy pad training.</span>
+        </p>
+        <p>
+            <strong>Are the puppies vaccinated?</strong>
+            <br>
+            <span style="color: #808080;">All puppies come with up-to-date vaccinations and shot record.</span>
+        </p>
+        <p>
+            <strong>Can you put a puppy on hold for me?</strong>
+            <br>
+            <span style="color: #808080;">Any puppy can be held until time for adoption with a $100 good faith deposit.</span>
+        </p>
+        <p>
+            <strong>Can I make payment installments?</strong>
+            <br>
+            <span style="color: #808080;"> Absolutely.</span>
+        </p>
+        <p>
+            <strong>What forms of payment do you accept?</strong>
+            <br>
+            <span style="color: #808080;">Personal or Cashiers check western union money order, pay-pal</span>
+        </p>
+        <p>
+            <strong>Are the dogs registered?</strong>
+            <br>
+            <span style="color: #808080;">Yes. All of our puppies are CKC registered.</span>
+        </p>
+        <p>
+            <strong>What comes with a puppy?</strong>
+            <br>
+            <span style="color: #808080;">Food, feeding instructions, toys, blanket, new outfit, puppy training book, vaccination and
+                registration paper, and a box for travel.</span>
+        </p>
+        <p></p>
+    </div>
+
+    <div id="footer">
+        &#169; 2020 Red Poppy Pets
+    </div>
+
+    <script>
+        const loadData = async () => {
+            const DATA_URI = "https://redpoppypets.s3.amazonaws.com/applicationState.json";
+            const res = await fetch(DATA_URI);
+            const data = await res.json();
+            const fragment = document.createDocumentFragment();
+
+            data.items.forEach(i => {
+                const div = document.createElement('div');
+                const img = document.createElement('div');
+                const content = document.createElement('div');
+                const h4 = document.createElement('h4');
+                const price = document.createElement('p');
+                const gender = document.createElement('p');
+                const description = document.createElement('p')
+
+                div.classList.add('tile');
+                img.classList.add('tile-image');
+                content.classList.add('tile-content');
+                img.style.backgroundImage = 'url(' + i.imgUrl + ')';
+                h4.innerHTML = i.title;
+                price.innerHTML = i.price;
+                gender.innerHTML = i.gender;
+
+                // description.innerHTML = i.description;
+
+                div.appendChild(img);
+                content.appendChild(h4);
+                content.appendChild(price);
+                content.appendChild(gender);
+                // content.appendChild(description);
+                div.appendChild(content);
+                fragment.appendChild(div);
+            });
+
+            document.getElementById('item-tiles').appendChild(fragment);
+        };
+
+        loadData();
+    </script>
+</body>
+
+</html>
