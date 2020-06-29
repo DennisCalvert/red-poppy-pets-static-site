@@ -1,3 +1,6 @@
 # red-poppy-pets-static-site
 
-- Deployed and hosted with Netlify
+RPP is comprised of 3 repos
+- Public Static: Netlify
+- Admin UI: Netlify
+- Admin Service: Heroku
