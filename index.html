@@ -293,7 +293,7 @@ Page Content Nav Buider Styles
 
     <script>
         const loadData = async () => {
-            const DATA_URI = "https://redpoppypets.s3.amazonaws.com/applicationState.json";
+            const DATA_URI = "https://rpp-api-static.s3.us-east-2.amazonaws.com/5f0552b7b03d919e5836fc26/applicationstate.json";
             const res = await fetch(DATA_URI);
             const data = await res.json();
             const fragment = document.createDocumentFragment();
