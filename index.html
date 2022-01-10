@@ -63,10 +63,11 @@
 
         #heading #logo {
             display: block;
-            padding: 3px;
+            padding: 8px;
         }
 
         #heading #logo img {
+            margin-top: 5px;
             max-width: 110px;
         }
 
@@ -120,8 +121,8 @@
         }
 
         /*--------------------------
-Page Content Nav Buider Styles
---------------------------*/
+        Page Content Nav Buider Styles
+        --------------------------*/
         #page-nav {
             text-align: right;
             background-color: transparent;
@@ -133,7 +134,7 @@ Page Content Nav Buider Styles
 
         #page-nav a {
             display: inline-block;
-            padding: 10px;
+            padding: 15px;
             transition: background-color 0.2s ease;
         }
 
@@ -147,8 +148,7 @@ Page Content Nav Buider Styles
             color: #FFFFFF;
         }
 
-/* Contact */
-
+        /* contact */
         input,
         textarea,
         button {
@@ -157,13 +157,15 @@ Page Content Nav Buider Styles
             width: 100%;
             padding: 10px;
         }
-        input[type=submit]{
+        input[type=submit], button{
             background: green;
             color: #fff;
             border-radius: 3px;
             border: 0;
+            cursor: pointer;
         }
-/* puppies */
+
+        /* puppies */
         #item-tiles {
             display: flex;
             flex-flow: row wrap;
@@ -194,6 +196,45 @@ Page Content Nav Buider Styles
         #item-tiles .tile-content {
             padding: 10px;
         }
+
+        /* contact */
+        #section-contact {
+            position: fixed;
+            top: -100vh;
+            right: 0;
+            background: #fff;
+            width: 100%;
+            height: 100vh;
+            padding: 15px;
+            transition: all 0.2s ease;
+        }
+
+        #section-contact.isVisible {
+            top: 0;
+        }
+
+        #section-contact  .close {
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-weight: bold;
+            color: #aaa;
+            font-size: 1.2em;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            background: #eee;
+        }
+        #contact-form-wrapper {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        #imgPupInfo {
+            max-width: 100%;
+        }
     </style>
 </head>
 
@@ -201,30 +242,13 @@ Page Content Nav Buider Styles
     <div id="heading">
         <span id="logo"><img src="https://redpoppypets.s3.amazonaws.com/2020/rpp-logo.png" /></span>
         <div id="page-nav">
-            <a href="#section-puppies" id="nav-puppies">Puppies</a>
+            <!-- <a href="#section-puppies" id="nav-puppies">Puppies</a> -->
             <a href="#section-resources" id="nav-resources">Resources</a>
-            <a href="#section-contact" id="nav-contact">Contact</a>
+            <!-- <a id="nav-email">Email</a> -->
+            <a href="tel: 256-339-0748" id="nav-contact">Call</a>
         </div>
     </div>
     <div id="hero">
-    </div>
-    <hr />
-    <div class="content">
-        <div id="section-contact">
-            <p>Owner: Lisa Calvert</p>
-            <p>Phone: 256-747-1086 / 256-595-4630</p>
-            <p>Email: lisa@redpoppypets.com</p>
-            <form action="https://mailthis.to/lisa@redpoppypets.com" method="POST" encType="multipart/form-data">
-                <input required type="text" name="name" placeholder="Your name">
-                <input required type="email" name="_replyto" placeholder="Your email">
-                <textarea name="message" placeholder="Enter your message here"></textarea>
-                <input type="hidden" name="_subject" value="Red Poppy Pets">
-                <input type="hidden" name="_after" value="https://redpoppypets.com/">
-                <input type="hidden" name="_honeypot" value="">
-                <input type="hidden" name="_confirmation" value="">
-                <input type="submit" value="Send">
-            </form>
-        </div>
     </div>
 <hr />
     <div id="section-puppies">
@@ -237,9 +261,12 @@ Page Content Nav Buider Styles
     </div>
 <hr />
     <div id="section-resources" class="content">
-        <p>
-            <a title="Puppy Purchase Guarantee" href="https://redpoppypets.s3.amazonaws.com/puppy_purchase_guarantee.pdf" target="_blank">Puppy Purchase Guarantee</a>
-        </p>
+        <br />
+        <h1>
+            <a title="Puppy Purchase Guarantee" href="https://redpoppypets.s3.amazonaws.com/puppy_purchase_guarantee.pdf" target="_blank">Puppy Purchase Guarantee >>></a>
+        </h1>
+        <br />
+        <br />
         <p>
             <strong>FAQ</strong>
         </p>
@@ -285,13 +312,71 @@ Page Content Nav Buider Styles
         </p>
     </div>
 
+
+
+    <!-- <hr />
+    <div class="content">
+        
+    </div> -->
     <hr />
 
     <div id="footer">
-        &#169; 2020 Red Poppy Pets
+        &#169; <span id="dateStamp"></span> Red Poppy Pets
+    </div>
+
+    <div id="section-contact">
+        <div id="contact-form-wrapper">
+            <p>Owner: Lisa Calvert</p>
+            <p>Phone: 256-747-1086 / 256-595-4630</p>
+            <p>Email: lisa@redpoppypets.com</p>
+            <div id="pupInfo"></div>
+            <br />
+            <!-- <input required type="text" name="name" placeholder="Your name"> -->
+            <input required type="email" id="txtFrom" name="txtFrom" placeholder="Your email">
+            <!-- <input required type="email" id="txtFromConfirm" name="txtFromConfirm" placeholder="Confirm email"> -->
+            <textarea id="txtEmailBody" style="min-height:200px" name="txtEmailBody" placeholder="Enter your message here"></textarea>
+            <input type="hidden" id="txtSubject" name="txtSubject" value="Red Poppy Pets">
+            <input type="hidden" id="txtExtraInfo" name="txtExtraInfo" value="">
+            <input type="hidden" name="_after" value="https://redpoppypets.com/">
+            <input type="hidden" name="_honeypot" value="">
+            <input type="hidden" name="_confirmation" value="">
+            <button type="button" id="btnSendEmail">Send</button>
+            <div id="closeContactForm" class="close">X</div>
+        </div>
     </div>
 
     <script>
+        const toggleContactVisible = () => {
+            document.getElementById('section-contact').classList.toggle('isVisible');
+        };
+
+        const showRequestInfoForm = (item) => {
+            toggleContactVisible();
+            const pupName = item.title.split(" ")[0];
+            document.getElementById("pupInfo").innerHTML = `Request more info for ${pupName}`;
+            document.getElementById("txtSubject").value = `Info Request: ${pupName}`;
+            document.getElementById("txtExtraInfo").value = Object.keys(item).map(key => `${key}: ${item[key]}`).join("\n\n");
+        };
+
+        const sendEmail = () => {
+            document.getElementById("btnSendEmail").setAttribute("disabled", true);
+            const from = document.getElementById("txtFrom").value;
+            const customText = document.getElementById("txtEmailBody").value;
+            const txtExtraInfo = document.getElementById("txtExtraInfo").value;
+            const subject = document.getElementById("txtSubject").value;
+            const text = customText + '\n\n\n\n' + txtExtraInfo;
+            // const data = {data: { from,text,subject} };
+            fetch("https://rpp-api.herokuapp.com/mail", {
+            // fetch("http://localhost:4000/mail", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({from,text,subject})
+            });
+        };
+
         const loadData = async () => {
             const DATA_URI = "https://rpp-api-static.s3.us-east-2.amazonaws.com/5f0552b7b03d919e5836fc26/applicationstate.json";
             const res = await fetch(DATA_URI);
@@ -303,25 +388,29 @@ Page Content Nav Buider Styles
                 const img = document.createElement('div');
                 const content = document.createElement('div');
                 const h4 = document.createElement('h4');
-                const price = document.createElement('p');
-                const gender = document.createElement('p');
+                const price = document.createElement('span');
+                const gender = document.createElement('span');
                 const description = document.createElement('p')
+                const btnInquire = document.createElement('button');
 
                 div.classList.add('tile');
                 img.classList.add('tile-image');
                 content.classList.add('tile-content');
                 img.style.backgroundImage = 'url(' + i.imgUrl + ')';
                 h4.innerHTML = i.title;
-                price.innerHTML = i.price;
-                gender.innerHTML = i.gender;
-
+                price.innerHTML = i.gender + '&nbsp;|&nbsp;' + i.price;
+                // gender.innerHTML = i.gender;
+                btnInquire.innerHTML = "Request More Info for " + i.title.split(" ")[0];
+                btnInquire.onclick = () => showRequestInfoForm(i);
+                
                 description.innerHTML = i.description;
 
                 div.appendChild(img);
                 content.appendChild(h4);
                 content.appendChild(price);
-                content.appendChild(gender);
+                i.title && content.appendChild(gender);
                 content.appendChild(description);
+                i.title && content.appendChild(btnInquire)
                 div.appendChild(content);
                 fragment.appendChild(div);
             });
@@ -329,6 +418,11 @@ Page Content Nav Buider Styles
             document.getElementById('item-tiles').appendChild(fragment);
         };
 
+        document.getElementById("dateStamp").innerHTML = new Date().getFullYear();
+        document.getElementById("closeContactForm").addEventListener('click', toggleContactVisible);
+        document.getElementById("btnSendEmail").addEventListener('click', sendEmail);
+        
+        // document.getElementById("nav-email").addEventListener('click', toggleContactVisible);
         loadData();
     </script>
 </body>
